@@ -120,6 +120,7 @@ class RandomPolicy(RouteController):
             '''
             Your algo starts here
             '''
+            print("IM IN THE ALGO!!!!!!")
             decision_list = []
 
             i = 0

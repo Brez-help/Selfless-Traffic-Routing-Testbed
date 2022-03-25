@@ -54,6 +54,11 @@ def test_dijkstra_policy(vehicles):
     scheduler = DijkstraPolicy(init_connection_info)
     run_simulation(scheduler, vehicles)
 
+# Our own function to run our algorithm
+def test_Our_algorithm(vehicles):
+    print("Using our algorithm!")
+    schedule = RouteController(init_connection_info)
+    run_simulation(scheduler,vehicles)
 
 def run_simulation(scheduler, vehicles):
 
@@ -69,6 +74,7 @@ def run_simulation(scheduler, vehicles):
     print(str(deadlines_missed) + ' deadlines missed.')
 
 if __name__ == "__main__":
+    # print("IM IN MAIN!")
     sumo_binary = checkBinary('sumo-gui')
     # sumo_binary = checkBinary('sumo')#use this line if you do not want the UI of SUMO
 
@@ -89,4 +95,6 @@ if __name__ == "__main__":
     for vid, v in vehicles.items():
         print("id: {}, destination: {}, start time:{}, deadline: {};".format(vid, \
             v.destination, v.start_time, v.deadline))
-    test_dijkstra_policy(vehicles)
+    # test_dijkstra_policy(vehicles)
+    # Run our function
+    test_Our_algorithm(vehicles)
