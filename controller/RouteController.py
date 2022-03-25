@@ -42,6 +42,7 @@ class RouteController(ABC):
     """
     def __init__(self, connection_info: ConnectionInfo):
         self.connection_info = connection_info
+        print("IM IN THE ALGO!!!!!")
         self.direction_choices = [STRAIGHT, TURN_AROUND,  SLIGHT_RIGHT, RIGHT, SLIGHT_LEFT, LEFT]
 
     def compute_local_target(self, decision_list, vehicle):
@@ -123,10 +124,14 @@ class RandomPolicy(RouteController):
             print("IM IN THE ALGO!!!!!!")
             decision_list = []
 
+            # Print out connection info
+            print(connection_info.outgoing_edges_dict)
+            # print("Im going left!")
             i = 0
             while i < 10:  # choose the number of decisions to make in advanced; depends on the algorithm and network
                 choice = self.direction_choices[random.randint(0, 5)]  # 6 choices available in total
-
+                # Hardcode them to go left
+                # choice = 'l'
                 # dead end
                 if len(self.connection_info.outgoing_edges_dict[start_edge].keys()) == 0:
                     break
