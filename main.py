@@ -56,8 +56,8 @@ def test_dijkstra_policy(vehicles):
 
 # Our own function to run our algorithm
 def test_Our_algorithm(vehicles):
-    print("Using our algorithm!")
-    scheduler = RandomPolicy(init_connection_info)
+    print("Using A* Mod algorithm!")
+    scheduler = aStarMod(init_connection_info)
     run_simulation(scheduler, vehicles)
 
 def run_simulation(scheduler, vehicles):
