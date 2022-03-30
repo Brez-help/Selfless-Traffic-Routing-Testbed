@@ -224,6 +224,7 @@ class RandomPolicy(RouteController):
 
         return local_targets
 
+
 class aStarMod(RouteController):
     """
     Example class for a custom scheduling algorithm.
@@ -275,17 +276,27 @@ class aStarMod(RouteController):
             while True:
                 if current_edge not in self.connection_info.outgoing_edges_dict.keys():
                     continue
+                # Pick the 0th edge
+                shortestEdge = self.connection_info.edge_length_dict[start_edge]
+                print("The 0th edge = " + str(shortestEdge))
                 for direction, outgoing_edge in self.connection_info.outgoing_edges_dict[current_edge].items():
                     if outgoing_edge not in unvisited:
                         continue
                     edge_length = self.connection_info.edge_length_dict[outgoing_edge]
+                    #Change here down to if
                     new_distance = current_distance + edge_length
+                    # Loop to get the shortest edge
+                    if self.connection_info.edge_length_dict[outgoing_edge] < shortestEdge:
+                        shortestEdge = self.connection_info.edge_length_dict[outgoing_edge]
+                    print("Shortest edge is: " + str(shortestEdge))
+                    # Pick the shortest edge as the next edge to visit
+                    
                     # Heuristic should go here
-                    if new_distance < unvisited[outgoing_edge]:
-                        unvisited[outgoing_edge] = new_distance
-                        current_path = copy.deepcopy(path_lists[current_edge])
-                        current_path.append(direction)
-                        path_lists[outgoing_edge] = copy.deepcopy(current_path)
+                    # if new_distance < unvisited[outgoing_edge]: # <-- change unvisited to something else?
+                    unvisited[outgoing_edge] = shortestEdge
+                    current_path = copy.deepcopy(path_lists[current_edge])
+                    current_path.append(direction)
+                    path_lists[outgoing_edge] = copy.deepcopy(current_path)
                         # print("{} + {} : {} + {}".format(path_lists[current_edge], direction, path_edge_lists[current_edge], outgoing_edge))
 
                 visited[current_edge] = current_distance
@@ -305,4 +316,3 @@ class aStarMod(RouteController):
 
             local_targets[vehicle.vehicle_id] = self.compute_local_target(decision_list, vehicle)
         return local_targets
-
