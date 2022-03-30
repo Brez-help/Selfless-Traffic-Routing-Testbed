@@ -19,6 +19,7 @@ else:
 
 from sumolib import checkBinary
 import traci
+from controller.AStar import *
 
 
 # use vehicle generation protocols to generate vehicle list
